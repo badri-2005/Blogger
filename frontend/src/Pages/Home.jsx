@@ -20,7 +20,7 @@ const Home = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/blogs");
+      const res = await axios.get("https://devnotex.onrender.com/api/blogs");
       setBlogs(res.data);
       setLoading(false);
     } catch (error) {
@@ -40,7 +40,7 @@ const Home = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/blogs/${id}`);
+      await axios.delete(`https://devnotex.onrender.com/api/blogs/${id}`);
       setBlogs((prev) => prev.filter((blog) => blog._id !== id));
     } catch (error) {
       alert("Failed to delete blog");

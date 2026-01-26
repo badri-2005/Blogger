@@ -10,7 +10,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/blogs/${id}`)
+      .get(`https://devnotex.onrender.com/api/blogs/${id}`)
       .then((res) => setBlog(res.data))
       .catch(() => alert("Failed to load blog"));
   }, [id]);
