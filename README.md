@@ -86,15 +86,15 @@ Start Frontend Application
 cd frontend
 npm run dev
 ```
-License
-This project is licensed under the MIT License.
+### License
+#### This project is licensed under the MIT License.
 
-Author
-Badri Narayanan B R
-Computer Science Engineering Student
-Full-Stack Developer | Data Engineering Enthusiast
+### Author
+- Badri Narayanan B R
+- Computer Science Engineering Student
+- Full-Stack Developer | Data Engineering Enthusiast
 
-GitHub: https://github.com/badri-2005
+## GitHub: https://github.com/badri-2005
 
-Support
+## Support
 If you found this project helpful, consider giving it a star.
