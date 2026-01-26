@@ -1,61 +1,87 @@
 # Blogger
 
-A MERN stack blogging application for creating, reading, updating, and deleting blog posts.
+Blogger is a modern content management platform designed for developers to understand full-stack architecture, RESTful APIs, and scalable frontend-backend integration.
 
-## Tech Stack
+🚀 Features
 
-- **Frontend**: React, React Router, Axios
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Package Manager**: npm
+Create, read, update, and delete blog posts
 
-## Features
+Responsive UI across devices
 
-- Create, read, update, and delete blog posts
-- Responsive design
+RESTful API design
 
+Modular project architecture
 
-## Installation
+Axios-based API communication
 
-1. Clone the repository
-```bash
+Scalable folder structure
+
+🛠️ Tech Stack
+Frontend
+
+React
+
+React Router
+
+Axios
+
+Backend
+
+Node.js
+
+Express.js
+
+Database
+
+MongoDB
+
+📂 Project Structure
+Blogger/
+├── frontend/
+├── backend/
+├── README.md
+
+⚙️ Installation
+Clone Repository
 git clone https://github.com/badri-2005/Blogger.git
 cd Blogger
-```
 
-2. Install backend dependencies
-```bash
+Install Backend Dependencies
 cd backend
 npm install
-```
 
-3. Install frontend dependencies
-```bash
+Install Frontend Dependencies
 cd ../frontend
 npm install
-```
 
-## Running the Application
-
-**Backend:**
-```bash
+▶️ Running the Application
+Backend Server
 cd backend
 npm run dev
-```
 
-**Frontend:**
-```bash
+Frontend Server
 cd frontend
-npm  run dev
-```
+npm run dev
 
-## Project Structure
+🔧 Environment Variables
 
-```
-Blogger/
-├── client/       # React frontend
-├── server/       # Express backend
-└── README.md
-```
+Create a .env file inside the backend directory:
 
-## Badri Narayanan B R
+MONGO_URI=your_mongodb_connection_string
+PORT=5000
+
+📜 License
+
+This project is licensed under the MIT License.
+
+👨‍💻 Author
+
+Badri Narayanan B R
+Computer Science Engineering Student
+Full-Stack Developer | Data Engineering Enthusiast
+
+GitHub: https://github.com/badri-2005
+
+⭐ Support
+
+If you found this project helpful, consider giving it a star to support the project.
