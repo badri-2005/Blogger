@@ -1,87 +1,100 @@
-# Blogger
+# Blogger – MERN Stack Blogging Platform
 
-Blogger is a modern content management platform designed for developers to understand full-stack architecture, RESTful APIs, and scalable frontend-backend integration.
+![GitHub Repo Size](https://img.shields.io/github/repo-size/badri-2005/Blogger)
+![GitHub Stars](https://img.shields.io/github/stars/badri-2005/Blogger?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/badri-2005/Blogger?style=social)
+![GitHub License](https://img.shields.io/github/license/badri-2005/Blogger)
+![Node Version](https://img.shields.io/badge/node-%3E=18.x-green)
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![React](https://img.shields.io/badge/react-18-blue)
+![MongoDB](https://img.shields.io/badge/database-mongodb-green)
+![Express](https://img.shields.io/badge/backend-express-black)
 
-🚀 Features
+A full-stack blogging application built using the MERN stack that enables users to create, read, update, and delete blog posts through a clean and responsive user interface.
 
-Create, read, update, and delete blog posts
+---
 
-Responsive UI across devices
+## Overview
 
-RESTful API design
+**Blogger** is a modern content management platform designed to demonstrate full-stack architecture, RESTful API development, and scalable frontend-backend integration.
 
-Modular project architecture
+---
 
-Axios-based API communication
+## Features
 
-Scalable folder structure
+- Create, read, update, and delete blog posts  
+- Responsive UI across desktop and mobile devices  
+- RESTful API architecture  
+- Modular project structure  
+- Axios-based API communication  
+- Scalable codebase  
 
-🛠️ Tech Stack
-Frontend
+---
 
-React
+## Tech Stack
 
-React Router
+### Frontend
+- React  
+- React Router  
+- Axios  
 
-Axios
+### Backend
+- Node.js  
+- Express.js  
 
-Backend
+### Database
+- MongoDB  
 
-Node.js
+---
 
-Express.js
+## Project Structure
 
-Database
-
-MongoDB
-
-📂 Project Structure
 Blogger/
 ├── frontend/
 ├── backend/
 ├── README.md
 
-⚙️ Installation
-Clone Repository
+
+---
+
+## Installation
+
+### Clone the Repository
+
+```bash
 git clone https://github.com/badri-2005/Blogger.git
 cd Blogger
-
+```
 Install Backend Dependencies
+```
 cd backend
 npm install
-
+```
 Install Frontend Dependencies
+```
 cd ../frontend
 npm install
-
-▶️ Running the Application
-Backend Server
+````
+Running the Application
+Start Backend Server
+```
 cd backend
 npm run dev
-
-Frontend Server
+```
+Start Frontend Application
+```
 cd frontend
 npm run dev
-
-🔧 Environment Variables
-
-Create a .env file inside the backend directory:
-
-MONGO_URI=your_mongodb_connection_string
-PORT=5000
-
-📜 License
-
+```
+License
 This project is licensed under the MIT License.
 
-👨‍💻 Author
-
+Author
 Badri Narayanan B R
 Computer Science Engineering Student
 Full-Stack Developer | Data Engineering Enthusiast
 
 GitHub: https://github.com/badri-2005
 
-⭐ Support
-
-If you found this project helpful, consider giving it a star to support the project.
+Support
+If you found this project helpful, consider giving it a star.
