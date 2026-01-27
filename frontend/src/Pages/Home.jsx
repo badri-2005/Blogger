@@ -3,7 +3,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import { useLocation } from "react-router-dom";
 
+// https://devnotex.onrender.com
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,6 +19,11 @@ const Home = () => {
   const navigate = useNavigate();
 
   const ADMIN_PASSWORD = "123456"; // Move to env later
+
+  const Location = useLocation()
+  const user = Location.state
+  // console.log(user);
+  
 
   const fetchBlogs = async () => {
     try {
@@ -84,7 +91,10 @@ const Home = () => {
           {/* Header */}
           <div className="mb-10 flex justify-between items-center">
             <div>
-              <h1 className="text-4xl font-semibold tracking-tight text-gray-900">
+              <h1 className="text-2xl font-medium text-gray-900 mb-1">
+                Welcome! <span className="text-red-700 font-bold">{user?.name}</span>
+              </h1>
+              <h1 className="text-4xl font-semibold tracking-tight text-gray-900 mt-2">
                 Latest Articles
               </h1>
               <p className="mt-2 text-gray-500 text-sm">
@@ -119,7 +129,7 @@ const Home = () => {
                   </h2>
 
                   <div className="mt-2 text-xs text-gray-400">
-                    {new Date(blog.createdAt).toLocaleDateString()} · {blog.author}
+                    {new Date(blog.createdAt).toLocaleDateString()} · <span className="text-black font-semibold">{blog.author}</span>
                   </div>
 
                   {/* ✅ Render formatted HTML safely */}
