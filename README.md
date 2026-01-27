@@ -1,61 +1,100 @@
-# Blogger
+# Blogger – MERN Stack Blogging Platform
 
-A MERN stack blogging application for creating, reading, updating, and deleting blog posts.
+![GitHub Repo Size](https://img.shields.io/github/repo-size/badri-2005/Blogger)
+![GitHub Stars](https://img.shields.io/github/stars/badri-2005/Blogger?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/badri-2005/Blogger?style=social)
+![GitHub License](https://img.shields.io/github/license/badri-2005/Blogger)
+![Node Version](https://img.shields.io/badge/node-%3E=18.x-green)
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![React](https://img.shields.io/badge/react-18-blue)
+![MongoDB](https://img.shields.io/badge/database-mongodb-green)
+![Express](https://img.shields.io/badge/backend-express-black)
 
-## Tech Stack
+A full-stack blogging application built using the MERN stack that enables users to create, read, update, and delete blog posts through a clean and responsive user interface.
 
-- **Frontend**: React, React Router, Axios
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Package Manager**: npm
+---
+
+## Overview
+
+**Blogger** is a modern content management platform designed to demonstrate full-stack architecture, RESTful API development, and scalable frontend-backend integration.
+
+---
 
 ## Features
 
-- Create, read, update, and delete blog posts
-- Responsive design
+- Create, read, update, and delete blog posts  
+- Responsive UI across desktop and mobile devices  
+- RESTful API architecture  
+- Modular project structure  
+- Axios-based API communication  
+- Scalable codebase  
 
+---
+
+## Tech Stack
+
+### Frontend
+- React  
+- React Router  
+- Axios  
+
+### Backend
+- Node.js  
+- Express.js  
+
+### Database
+- MongoDB  
+
+---
+
+## Project Structure
+
+Blogger/
+├── frontend/
+├── backend/
+├── README.md
+
+
+---
 
 ## Installation
 
-1. Clone the repository
+### Clone the Repository
+
 ```bash
 git clone https://github.com/badri-2005/Blogger.git
 cd Blogger
 ```
-
-2. Install backend dependencies
-```bash
+Install Backend Dependencies
+```
 cd backend
 npm install
 ```
-
-3. Install frontend dependencies
-```bash
+Install Frontend Dependencies
+```
 cd ../frontend
 npm install
+````
+Running the Application
+Start Backend Server
 ```
-
-## Running the Application
-
-**Backend:**
-```bash
 cd backend
 npm run dev
 ```
-
-**Frontend:**
-```bash
+Start Frontend Application
+```
 cd frontend
-npm  run dev
+npm run dev
 ```
+### License
+#### This project is licensed under the MIT License.
 
-## Project Structure
+### Author
+- Badri Narayanan B R
+- Computer Science Engineering Student
+- Full-Stack Developer | Data Engineering Enthusiast
 
-```
-Blogger/
-├── client/       # React frontend
-├── server/       # Express backend
-└── README.md
-```
+#### GitHub: https://github.com/badri-2005
 
-## Badri Narayanan B R
+## Support
+If you found this project helpful, consider giving it a star.
