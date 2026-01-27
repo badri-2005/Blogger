@@ -5,6 +5,8 @@ import express from 'express';
 import connection from './DB/db.mjs';
 import blog from './Schemas/blog.mjs';
 import cors from 'cors';
+import {signup} from './controllers/signup.mjs';
+import {login} from './controllers/signup.mjs';
 // initializing express app
 const app = express();
 app.use(express.json());
@@ -113,6 +115,12 @@ app.delete('/api/blogs/:id',async(req,res)=>{
     }
 })
 
+// API for User Signup
+app.post('/api/signup',signup);
+
+
+// API for User Login
+app.post('/api/login',login);
 
 // starting the server
 app.listen(PORT,()=>{
