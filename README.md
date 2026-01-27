@@ -94,7 +94,7 @@ npm run dev
 - Computer Science Engineering Student
 - Full-Stack Developer | Data Engineering Enthusiast
 
-## GitHub: https://github.com/badri-2005
+#### GitHub: https://github.com/badri-2005
 
 ## Support
 If you found this project helpful, consider giving it a star.
