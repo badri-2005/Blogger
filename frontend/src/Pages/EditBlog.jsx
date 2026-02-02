@@ -14,7 +14,7 @@ const EditBlog = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/blogs/${id}`)
+      .get(`https://devnotex.onrender.com/api/blogs/${id}`)
       .then((res) => setForm(res.data))
       .catch(() => alert("Failed to load blog"));
   }, [id]);
@@ -26,7 +26,7 @@ const EditBlog = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/api/blogs/${id}`, form);
+      await axios.put(`https://devnotex.onrender.com/api/blogs/${id}`, form);
       navigate("/");
     } catch {
       alert("Update failed");

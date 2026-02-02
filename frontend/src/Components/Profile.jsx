@@ -9,7 +9,7 @@ export default function Profile() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/me", { withCredentials: true })
+      .get("https://devnotex.onrender.com/api/me", { withCredentials: true })
       .then((res) => {
         setUser(res.data);
         setLoading(false);
