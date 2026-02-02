@@ -15,16 +15,12 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "https://devnotex.onrender.com/api/login",
-        form
+        "http://localhost:3000/api/login",
+        form , { withCredentials: true }
       );
 
       alert(res.data.msg);   // "Logged In"
-      navigate("/",{
-        state:{
-name: res.data.name,
-        email: res.data.email        }
-      });         // redirect to home
+      navigate("/home");         // redirect to home
 
     } catch (err) {
       alert(err.response?.data?.msg || "Login failed");

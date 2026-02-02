@@ -3,12 +3,15 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import { useLocation } from "react-router-dom";
 
-// https://devnotex.onrender.com
+// http://localhost:3000
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user,setUser] = useState(null);
+  const [auth , setAuth] = useState(false);
+
+  console.log("data",user);
 
   // ✅ FIX: Hooks must be declared at top level
   const [showPasswordDialog, setShowPasswordDialog] = useState(false);
@@ -20,14 +23,13 @@ const Home = () => {
 
   const ADMIN_PASSWORD = "123456"; // Move to env later
 
-  const Location = useLocation()
-  const user = Location.state
+
   // console.log(user);
   
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("https://devnotex.onrender.com/api/blogs");
+      const res = await axios.get("http://localhost:3000/api/blogs");
       setBlogs(res.data);
       setLoading(false);
     } catch (error) {
@@ -47,12 +49,26 @@ const Home = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`https://devnotex.onrender.com/api/blogs/${id}`);
+      await axios.delete(`http://localhost:3000/api/blogs/${id}`);
       setBlogs((prev) => prev.filter((blog) => blog._id !== id));
     } catch (error) {
       alert("Failed to delete blog");
     }
   };
+
+
+  // 
+  useEffect(()=>{
+    axios.get("http://localhost:3000/api/me",{ withCredentials: true })
+    .then((res)=>{
+      setUser(res.data);
+      setAuth(false)
+    })
+    .catch(()=>{
+      setUser(null);
+      setAuth(false)
+    })
+  },[])
 
   const verifyAdmin = (blogId, actionType) => {
     setSelectedBlogId(blogId);
@@ -81,18 +97,20 @@ const Home = () => {
     return <p className="text-center mt-10">Loading blogs...</p>;
   }
 
+  
+
   return (
     <div>
       <Header />
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 mt-16">
         <div className="max-w-6xl mx-auto px-6 py-12">
 
           {/* Header */}
           <div className="mb-10 flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-medium text-gray-900 mb-1">
-                Welcome! <span className="text-red-700 font-bold">{user?.name}</span>
+                Welcome! <span className="text-red-700 font-bold">{user?.username}</span>
               </h1>
               <h1 className="text-4xl font-semibold tracking-tight text-gray-900 mt-2">
                 Latest Articles

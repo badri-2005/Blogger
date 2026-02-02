@@ -7,11 +7,25 @@ import blog from './Schemas/blog.mjs';
 import cors from 'cors';
 import {signup} from './controllers/signup.mjs';
 import {login} from './controllers/signup.mjs';
+import session from "express-session";
+
+
+
 // initializing express app
 const app = express();
 app.use(express.json());
-app.use(cors());
 
+// CORS Configuration
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
+
+app.use(session({
+  secret: "devcollab_session_secret",
+  resave: false,
+  saveUninitialized: false
+}));
 
 // port number
 const PORT = 3000;
@@ -113,6 +127,16 @@ app.delete('/api/blogs/:id',async(req,res)=>{
         console.log(err.message);
         return res.status(400).send('Error in Deleting Blog');
     }
+})
+
+// API for Login Details Fetching
+app.get("/api/me",(req,res)=>{
+    if(!req.session.user)
+    {
+        return res.status(401).send({msg:"Not Authenticated"});
+    }
+
+    return res.status(200).send(req.session.user);
 })
 
 // API for User Signup

@@ -5,17 +5,20 @@ import EditBlog from "./Pages/EditBlog";
 import AddBlog from "./Pages/AddBlog";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
+import Profile from "./Components/Profile";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-  <Route path="/" element={<Home />} />
+  
+  <Route path="/home" element={<Home />} />
+  <Route path="/profile" element={<Profile />} />
   <Route path="/add" element={<AddBlog />} />
   <Route path="/blog/:id" element={<BlogDetails />} />
   <Route path="/edit/:id" element={<EditBlog />} />
   <Route path="/signup" element={<Signup />} />
-  <Route path="/login" element={<Login />} />
+  <Route path="/" element={<Login />} />
 </Routes>
 
     </BrowserRouter>

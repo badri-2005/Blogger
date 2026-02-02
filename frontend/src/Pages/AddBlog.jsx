@@ -1,8 +1,28 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+
+
 const AddBlog = () => {
+
+  const [user, setUser] = useState(null);
+  
+
+useEffect(()=>{
+  axios.get("http://localhost:3000/api/me" , {withCredentials:true})
+  .then((res)=>{
+    setUser(res.data)
+    console.log(res.data);
+  })
+  .catch((err)=>{
+    setUser(null)
+    console.log(err);
+  })
+},[])
+
+
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -29,7 +49,7 @@ const AddBlog = () => {
       setLoading(true);
 
       await axios.post(
-        "https://devnotex.onrender.com/api/add",
+        "http://localhost:3000/api/add",
         form,
         {
           headers: {
@@ -69,7 +89,7 @@ const AddBlog = () => {
 
           <input
             name="author"
-            value={form.author}
+            value={user?.username || form.author}
             onChange={handleChange}
             placeholder="Author Name"
             className="w-full border rounded-md px-4 py-2"

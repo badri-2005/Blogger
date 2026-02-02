@@ -19,7 +19,14 @@ const signup = async(req,res)=>{
             username , email , password : hashedpassword
         });
 
-        res.status(201).send({msg:"User registered successfully"},newuser);
+        res.status(201).send({
+                    msg: "User registered successfully",
+                    user: {
+                        id: newuser._id,
+                        username: newuser.username,
+                        email: newuser.email
+                    }
+    });
     }
     catch(err)
     {
@@ -45,7 +52,13 @@ const login = async(req,res)=>{
             return res.status(400).send({msg:"Invalid Credentials"});
         }
 
-        res.status(200).send({msg:"Logged In" , name : user.username , email : user.email});
+        req.session.user = {
+            id : user._id,
+            email : user.email,
+            username : user.username
+        }
+
+        res.status(200).send({msg:"Logged In" , user : req.session.user});
     }
     catch(err)
     {
