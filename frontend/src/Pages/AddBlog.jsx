@@ -2,7 +2,7 @@ import { useState , useEffect} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
+import Header from "../Components/Header";
 
 
 const AddBlog = () => {
@@ -55,7 +55,9 @@ const AddBlog = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div>
+      <Header />
+    <div className="min-h-screen bg-gray-50 mt-16">
       <div className="max-w-3xl mx-auto px-6 py-12">
 
         <h1 className="text-2xl font-semibold mb-6 text-gray-900">
@@ -111,6 +113,7 @@ const AddBlog = () => {
         </form>
 
       </div>
+    </div>
     </div>
   );
 };
