@@ -7,20 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddBlog = () => {
 
-  const [user, setUser] = useState(null);
-  
 
-useEffect(()=>{
-  axios.get("http://localhost:3000/api/me" , {withCredentials:true})
-  .then((res)=>{
-    setUser(res.data)
-    console.log(res.data);
-  })
-  .catch((err)=>{
-    setUser(null)
-    console.log(err);
-  })
-},[])
 
 
   const navigate = useNavigate();
@@ -58,7 +45,7 @@ useEffect(()=>{
         }
       );
 
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Axios Error:", error);
       alert("Failed to create blog");
@@ -89,7 +76,7 @@ useEffect(()=>{
 
           <input
             name="author"
-            value={user?.username || form.author}
+            value={form.author}
             onChange={handleChange}
             placeholder="Author Name"
             className="w-full border rounded-md px-4 py-2"
@@ -115,7 +102,7 @@ useEffect(()=>{
 
             <button
               type="button"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/home")}
               className="border px-6 py-2 rounded-md hover:bg-gray-100"
             >
               Cancel
