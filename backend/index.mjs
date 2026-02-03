@@ -17,7 +17,7 @@ app.use(express.json());
 
 // CORS Configuration
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173","https://devnotex-frontend.onrender.com"],
   credentials: true
 }));
 

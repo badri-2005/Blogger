@@ -36,7 +36,7 @@ const AddBlog = () => {
       setLoading(true);
 
       await axios.post(
-        "http://localhost:3000/api/add",
+        "https://devnotex.onrender.com/api/add",
         form,
         {
           headers: {

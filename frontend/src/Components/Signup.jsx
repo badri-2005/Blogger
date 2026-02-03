@@ -18,7 +18,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/api/signup", form);
+      await axios.post("https://devnotex.onrender.com/api/signup", form);
       alert("Signup successful");
       navigate("/login");
     } catch (err) {

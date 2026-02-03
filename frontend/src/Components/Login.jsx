@@ -16,7 +16,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/login",
+        "https://devnotex.onrender.com/api/login",
         form,
         { withCredentials: true }
       );

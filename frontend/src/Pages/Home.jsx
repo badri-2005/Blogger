@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
-// http://localhost:3000
+// https://devnotex.onrender.com
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ const Home = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/blogs");
+      const res = await axios.get("https://devnotex.onrender.com/api/blogs");
       setBlogs(res.data);
       setLoading(false);
     } catch (error) {
@@ -49,7 +49,7 @@ const Home = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/blogs/${id}`);
+      await axios.delete(`https://devnotex.onrender.com/api/blogs/${id}`);
       setBlogs((prev) => prev.filter((blog) => blog._id !== id));
     } catch (error) {
       alert("Failed to delete blog");
@@ -59,7 +59,7 @@ const Home = () => {
 
   // 
   useEffect(()=>{
-    axios.get("http://localhost:3000/api/me",{ withCredentials: true })
+    axios.get("https://devnotex.onrender.com/api/me",{ withCredentials: true })
     .then((res)=>{
       setUser(res.data);
       setAuth(false)
