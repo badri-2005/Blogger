@@ -5,19 +5,38 @@ import Footer from "./Footer";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
+  const [blogCount, setBlogCount] = useState(0);   
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("https://devnotex.onrender.com/api/me", { withCredentials: true })
-      .then((res) => {
-        setUser(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
+    const fetchProfileAndBlogs = async () => {
+      try {
+        const userRes = await axios.get("https://devnotex.onrender.com/api/me", {
+          withCredentials: true
+        });
+
+        const currentUser = userRes.data;
+        setUser(currentUser);
+
+        // ✅ Fetch all blogs (use your existing blogs API)
+        const blogsRes = await axios.get("https://devnotex.onrender.com/api/blogs");
+
+        // ✅ Count blogs where author === logged-in username
+        const myBlogs = blogsRes.data.filter(
+          (blog) =>
+            blog.author?.toLowerCase() === currentUser.username.toLowerCase()
+        );
+
+        setBlogCount(myBlogs.length);
+      } catch (error) {
+        console.error("Profile fetch error:", error);
         setUser(null);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchProfileAndBlogs();
   }, []);
 
   if (loading) {
@@ -73,14 +92,11 @@ export default function Profile() {
             </p>
           </div>
 
-          {/* Divider */}
           <div className="border-t border-gray-200 mb-5 sm:mb-6"></div>
 
-          {/* Profile Info */}
           <div className="space-y-4 sm:space-y-5">
             <div className="flex justify-between items-center">
-              <span className="text-xs uppercase tracking-wider 
-                               text-gray-500">
+              <span className="text-xs uppercase tracking-wider text-gray-500">
                 Username
               </span>
               <span className="text-sm font-medium text-black">
@@ -89,18 +105,24 @@ export default function Profile() {
             </div>
 
             <div className="flex justify-between items-center">
-              <span className="text-xs uppercase tracking-wider 
-                               text-gray-500">
+              <span className="text-xs uppercase tracking-wider text-gray-500">
                 Email
               </span>
-              <span className="text-sm font-medium text-black 
-                               break-all">
+              <span className="text-sm font-medium text-black break-all">
                 {user.email}
               </span>
             </div>
-          </div>
 
-         
+            {/* ✅ Blog Count */}
+            <div className="flex justify-between items-center">
+              <span className="text-xs uppercase tracking-wider text-gray-500">
+                No of Blogs
+              </span>
+              <span className="text-sm font-medium text-black">
+                {blogCount}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 

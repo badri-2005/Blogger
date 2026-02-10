@@ -20,7 +20,8 @@ const Login = () => {
         form,
         { withCredentials: true }
       );
-
+      console.log(res.data);
+      
       alert(res.data.msg);
       navigate("/home");
 

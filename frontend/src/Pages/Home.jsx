@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
+
+
 // https://devnotex.onrender.com
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
@@ -56,13 +58,16 @@ const Home = () => {
     }
   };
 
+  console.log(user);
+  
 
-  // 
+  // To fetch the user details
   useEffect(()=>{
     axios.get("https://devnotex.onrender.com/api/me",{ withCredentials: true })
-    .then((res)=>{
+    
+    .then((res)=>{      
       setUser(res.data);
-      setAuth(false)
+      setAuth(true);
     })
     .catch(()=>{
       setUser(null);

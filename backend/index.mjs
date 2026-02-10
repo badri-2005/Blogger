@@ -8,6 +8,9 @@ import cors from 'cors';
 import {signup} from './controllers/signup.mjs';
 import {login} from './controllers/signup.mjs';
 import session from "express-session";
+import { getUserProfile } from './controllers/profilecontroller.mjs';
+
+
 
 
 
@@ -15,17 +18,31 @@ import session from "express-session";
 const app = express();
 app.use(express.json());
 
+
+// They are used to store the session during the deployment of the app
+app.set("trust proxy" , 1);
+
 // CORS Configuration
 app.use(cors({
   origin: ["http://localhost:5173","https://devnotex-frontend.onrender.com"],
   credentials: true
 }));
 
+
 app.use(session({
+  name: "devnotex.sid",
   secret: "devcollab_session_secret",
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  proxy: true,
+  cookie: {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 1000 * 60 * 60 * 24
+  }
 }));
+
 
 // port number
 const PORT = 3000;
@@ -53,22 +70,25 @@ app.post('/api/add',async(req,res)=>{
     }
 })
 
-// API for Fetching all Blogs
-app.get('/api/blogs' , async(req,res)=>{
-    try{
-        const blogs = await blog.find();
-        if(blogs.length > 0)
-        {
-            return res.status(200).send(blogs);
-        }
-        return res.status(200).send({msg:"No Blogs Found"});
-    }
-    catch(err)
-    {
-        console.log(err.message);
-        return res.status(400).send('Error in Fetching Blogs');
-    }
-})
+
+app.get('/api/blogs', async (req, res) => {
+  try {
+    const blogs = await blog.find().lean();
+
+    const userId = req.session.user?._id;
+
+    const blogsWithLiked = blogs.map((b) => ({
+      ...b,
+      liked: userId ? b.likedBy.includes(userId) : false,
+    }));
+
+    return res.status(200).send(blogsWithLiked);
+  } catch (err) {
+    console.log(err.message);
+    return res.status(400).send('Error in Fetching Blogs');
+  }
+});
+
 
 // API for Fetching a Single Blog by ID
 app.get('/api/blogs/:id',async(req,res)=>{
@@ -135,9 +155,54 @@ app.get("/api/me",(req,res)=>{
     {
         return res.status(401).send({msg:"Not Authenticated"});
     }
-
+    console.log(req.session.user);
+    
     return res.status(200).send(req.session.user);
+
 })
+
+
+
+
+
+// API for Like / Unlike a Blog
+app.put("/api/blogs/:id/like", async (req, res) => {
+  try {
+    if (!req.session.user) {
+      return res.status(401).send({ msg: "Login required" });
+    }
+
+    const blogId = req.params.id;
+    const userId = req.session.user._id;
+
+    const post = await blog.findById(blogId);
+    if (!post) return res.status(404).send({ msg: "Blog not found" });
+
+    const alreadyLiked = post.likedBy.includes(userId);
+
+    if (alreadyLiked) {
+      post.likes -= 1;
+      post.likedBy.pull(userId);
+    } else {
+      post.likes += 1;
+      post.likedBy.push(userId);
+    }
+
+    await post.save();
+
+    return res.status(200).send({
+      msg: alreadyLiked ? "Unliked" : "Liked",
+      likes: post.likes,
+      liked: !alreadyLiked,
+    });
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).send({ msg: "Like failed" });
+  }
+});
+
+// API for Fetching User Profile
+app.get("/api/profile", getUserProfile);
 
 // API for User Signup
 app.post('/api/signup',signup);

@@ -20,7 +20,7 @@ const Signup = () => {
     try {
       await axios.post("https://devnotex.onrender.com/api/signup", form);
       alert("Signup successful");
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       alert(err.response?.data?.msg || "Signup failed");
     }

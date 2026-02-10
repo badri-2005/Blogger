@@ -7,6 +7,12 @@ import Signup from "./Components/Signup";
 import Login from "./Components/Login";
 import Profile from "./Components/Profile";
 
+import axios from "axios";
+
+axios.defaults.baseURL = "https://devnotex.onrender.com";
+axios.defaults.withCredentials = true;
+
+
 function App() {
   return (
     <BrowserRouter>

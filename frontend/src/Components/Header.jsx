@@ -5,6 +5,8 @@ import {User} from 'lucide-react'
 const Header = () => {
 
     const [user,setUser] = useState(null);
+    console.log(user);
+    
     useEffect(()=>{
         axios.get("https://devnotex.onrender.com/api/me" , {withCredentials:true})
         .then((res)=>{
@@ -17,6 +19,9 @@ const Header = () => {
 
     },[])
 
+    console.log(user);
+    
+
 
     return(
         <div className="bg-black text-white p-4 flex items-center justify-between shadow-md fixed  w-full top-0 z-10  ">
@@ -25,7 +30,7 @@ const Header = () => {
             {!user ?
             (
                   <button className="bg-white text-black px-3 py-1 rounded-md font-bold hover:bg-gray-200 transition">
-                <a href="/login">
+                <a href="/">
                     Login
                 </a>
             </button>
