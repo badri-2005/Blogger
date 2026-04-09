@@ -5,26 +5,22 @@ import Footer from "./Footer";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
-  const [blogCount, setBlogCount] = useState(0);   
+  const [blogCount, setBlogCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProfileAndBlogs = async () => {
       try {
-        const userRes = await axios.get("https://devnotex.onrender.com/api/me", {
-          withCredentials: true
+        const userResponse = await axios.get("/api/me", {
+          withCredentials: true,
         });
 
-        const currentUser = userRes.data;
+        const currentUser = userResponse.data;
         setUser(currentUser);
 
-        // ✅ Fetch all blogs (use your existing blogs API)
-        const blogsRes = await axios.get("https://devnotex.onrender.com/api/blogs");
-
-        // ✅ Count blogs where author === logged-in username
-        const myBlogs = blogsRes.data.filter(
-          (blog) =>
-            blog.author?.toLowerCase() === currentUser.username.toLowerCase()
+        const blogsResponse = await axios.get("/api/blogs");
+        const myBlogs = blogsResponse.data.filter(
+          (blog) => blog.author?.toLowerCase() === currentUser.username.toLowerCase()
         );
 
         setBlogCount(myBlogs.length);
@@ -41,91 +37,79 @@ export default function Profile() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <p className="text-gray-400 tracking-wide">
-          Loading profile...
-        </p>
+      <div className="min-h-screen bg-transparent">
+        <Header />
+        <div className="flex min-h-screen items-center justify-center px-4">
+          <p className="text-sm tracking-[0.2em] text-slate-400">Loading profile...</p>
+        </div>
       </div>
     );
   }
 
   if (!user) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4 text-center">
-        <h2 className="text-lg sm:text-xl font-semibold text-black mb-2">
-          Please login to view your profile
-        </h2>
-        <p className="text-gray-500 text-sm">
-          You need to be authenticated
-        </p>
+      <div className="min-h-screen bg-transparent">
+        <Header />
+        <div className="flex min-h-screen items-center justify-center px-4 pt-24">
+          <div className="max-w-md rounded-[2rem] border border-slate-200 bg-white/90 p-8 text-center shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
+              Please login to view your profile
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-500">
+              You need to be authenticated before accessing your account details.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-transparent">
       <Header />
 
-      <div className="flex items-center justify-center px-4 sm:px-6 
-                      pt-24 sm:pt-28 md:pt-32 pb-16 mt-48 lg:mt-28 sm:mt-28 md:mt-32">
-        <div className="w-full max-w-sm sm:max-w-md bg-white 
-                        border border-gray-200 rounded-2xl 
-                        shadow-sm p-6 sm:p-8">
-
-          {/* Avatar */}
-          <div className="flex flex-col items-center mb-6 sm:mb-8">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full 
-                            border-2 border-black flex items-center 
-                            justify-center text-2xl sm:text-3xl 
-                            font-bold text-black">
-              {user.username.charAt(0).toUpperCase()}
-            </div>
-
-            <h2 className="mt-3 sm:mt-4 text-lg sm:text-xl 
-                           font-semibold tracking-wide text-black">
-              {user.username}
-            </h2>
-
-            <p className="text-xs uppercase tracking-widest 
-                          text-gray-400 mt-1">
-              Developer
-            </p>
-          </div>
-
-          <div className="border-t border-gray-200 mb-5 sm:mb-6"></div>
-
-          <div className="space-y-4 sm:space-y-5">
-            <div className="flex justify-between items-center">
-              <span className="text-xs uppercase tracking-wider text-gray-500">
-                Username
-              </span>
-              <span className="text-sm font-medium text-black">
-                {user.username}
-              </span>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <span className="text-xs uppercase tracking-wider text-gray-500">
-                Email
-              </span>
-              <span className="text-sm font-medium text-black break-all">
-                {user.email}
-              </span>
-            </div>
-
-            {/* ✅ Blog Count */}
-            <div className="flex justify-between items-center">
-              <span className="text-xs uppercase tracking-wider text-gray-500">
-                No of Blogs
-              </span>
-              <span className="text-sm font-medium text-black">
-                {blogCount}
-              </span>
+      <main className="mx-auto max-w-6xl px-6 pb-16 pt-28">
+        <section className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="rounded-[2rem] border border-slate-200 bg-white/90 p-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.26em] text-amber-700">Profile</p>
+            <div className="mt-8 flex flex-col items-start gap-5">
+              <div className="flex h-24 w-24 items-center justify-center rounded-full border border-slate-300 bg-slate-50 text-3xl font-semibold text-slate-900">
+                {user.username.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <h1 className="text-3xl font-semibold tracking-tight text-slate-950">{user.username}</h1>
+                <p className="mt-2 text-sm uppercase tracking-[0.22em] text-slate-400">Writer account</p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
+          <div className="rounded-[2rem] border border-slate-200 bg-white/90 p-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.26em] text-amber-700">Account overview</p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Username</p>
+                <p className="mt-3 text-base font-medium text-slate-900">{user.username}</p>
+              </div>
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5 sm:col-span-2">
+                <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Email</p>
+                <p className="mt-3 text-base font-medium text-slate-900 break-all">{user.email}</p>
+              </div>
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Stories published</p>
+                <p className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{blogCount}</p>
+              </div>
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5 sm:col-span-2">
+                <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Workspace note</p>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Your profile keeps a quick snapshot of your publishing activity while the rest of the interface stays focused on reading and writing.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 }

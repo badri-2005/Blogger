@@ -1,13 +1,15 @@
-
 const Footer = () => {
-    return (
-        <footer className="bg-black text-gray-300">
-            
-                <div className="border-t border-gray-700 pt-8 text-center">
-                    <p>&copy; {new Date().getFullYear()} Badri Narayanan B R. All rights reserved.</p>
-                </div>
-        </footer>
-    );
+  return (
+    <footer className="border-t border-slate-200 bg-white/70">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p className="font-medium text-slate-700">DevNotex</p>
+          <p>Focused writing for thoughtful publishing.</p>
+        </div>
+        <p>&copy; {new Date().getFullYear()} Badri Narayanan B R. All rights reserved.</p>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
